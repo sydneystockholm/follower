@@ -8,10 +8,8 @@ describe('Facebook', function () {
     it('should get the # of likes a url has', function (done) {
         facebook.urlLikes('http://facebook.com', function (err, likes) {
             assert.ifError(err);
-            [ 'share_count', 'like_count', 'comment_count', 'total_count', 'click_count' ].forEach(function (count) {
-                assert(typeof likes[count] === 'number');
-                assert(likes[count] > 0);
-            });
+            assert(typeof likes === 'number');
+            assert(likes > 0);
             done();
         });
     });
