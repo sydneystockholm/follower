@@ -9,21 +9,21 @@ ifdef TEST
 endif
 
 dependencies:
-	npm install -s -d
+	@npm install -s -d
 
 deps: dependencies
 
 test:
 	@./node_modules/mocha/bin/mocha \
 		--reporter ${REPORTER} \
-		-s 200 \
-		-t 2000 $T
+		--slow 2000 \
+		--timeout 10000 $T
 
 check: test
 
 coverage: lib-cov
 	@JS_COV=1 ./node_modules/mocha/bin/mocha \
-		--reporter html-cov > coverage.html
+		--timeout 10000 --reporter html-cov > coverage.html
 	@rm -rf *-cov
 	@open coverage.html
 
