@@ -1,0 +1,23 @@
+{
+  "name": "follower",
+  "version": "0.1.0",
+  "description": "Fetch data from social networks",
+  "main": "index.js",
+  "scripts": {
+    "test": "make check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SydneyStockholm/follower"
+  },
+  "keywords": [ "social" ],
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "author": "Sydney Stockholm <opensource@sydneystockholm.com>",
+  "license": "MIT"
+}
