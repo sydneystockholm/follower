@@ -33,4 +33,10 @@ lib-cov:
 	@rm -rf lib-cov
 	@jscoverage lib lib-cov
 
-.PHONY: test dependencies coverage
+clean:
+	@rm -rf coverage.html lib-cov
+
+publish: clean
+	@npm -s publish
+
+.PHONY: test dependencies coverage publish clean
