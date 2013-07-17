@@ -39,7 +39,7 @@ describe('Pinterest', function () {
                     assert(item.description);
                     assert(item.board);
                     assert(typeof item.link !== 'undefined');
-                    assert(item.thumbnail);
+                    assert(item.image);
                 });
                 done();
             });
@@ -54,7 +54,7 @@ describe('Pinterest', function () {
                     assert(item.description);
                     assert(item.board);
                     assert(typeof item.link !== 'undefined');
-                    assert(item.thumbnail);
+                    assert(item.image);
                 });
                 done();
             });

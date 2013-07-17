@@ -18,7 +18,7 @@ describe('Youtube', function () {
                     assert(item.id);
                     assert(item.date.getTime() > 0);
                     assert(item.title);
-                    assert(item.thumbnail);
+                    assert(item.image);
                     assert(item.link);
                 });
                 done();
