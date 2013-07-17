@@ -57,5 +57,26 @@ describe('Instagram', function () {
 
     });
 
+    describe('#latestHashtagMedia', function () {
+
+        it('should get the latest media for a hashtag', function (done) {
+            instagram.latestHashtagMedia('yolo', function (err, media) {
+                assert.ifError(err);
+                assert(Array.isArray(media) && media.length);
+                media.forEach(function (item) {
+                    assert(item.id);
+                    assert(item.type);
+                    assert(item.link);
+                    assert(typeof item.caption !== 'undefined');
+                    assert(item.image);
+                    assert(item.user);
+                    assert(item.date.getTime() > 0);
+                });
+                done();
+            });
+        });
+
+    });
+
 });
 
