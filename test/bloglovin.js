@@ -19,8 +19,17 @@ describe('Bloglovin', function () {
             });
         });
 
+        it('should get the # of followers a blog has using a bloglovin url', function (done) {
+            bloglovin.followerCount('www.bloglovin.com/blog/3668940', function (err, followers) {
+                assert.ifError(err);
+                assert(typeof followers === 'number');
+                assert(followers > 0);
+                done();
+            });
+        });
+
         it('should fail on invalid blog url', function (done) {
-            bloglovin.followerCount(0, function (err) {
+            bloglovin.followerCount('adsfasdfasdof', function (err) {
                 assert(err);
                 done();
             });

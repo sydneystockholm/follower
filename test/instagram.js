@@ -20,7 +20,7 @@ describe('Instagram', function () {
         });
 
         it('should fail on an invalid username', function (done) {
-            instagram.followerCount('19280qs98d0as98d', function (err) {
+            instagram.followerCount('', function (err) {
                 assert(err);
                 done();
             });
@@ -48,7 +48,7 @@ describe('Instagram', function () {
         });
 
         it('should fail on an invalid username', function (done) {
-            instagram.latestMedia('asdlkfajsdf90*9808', function (err) {
+            instagram.latestMedia('', function (err) {
                 assert(err);
                 done();
             });
