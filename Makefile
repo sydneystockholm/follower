@@ -16,7 +16,7 @@ deps: dependencies
 test:
 	@./node_modules/mocha/bin/mocha \
 		--reporter ${REPORTER} \
-		--slow 2000 \
+		--slow 5000 \
 		--timeout 10000 $T
 
 check: test
@@ -39,4 +39,7 @@ clean:
 publish: clean
 	@npm -s publish
 
-.PHONY: test dependencies coverage publish clean
+lint:
+	@jshint lib test
+
+.PHONY: test dependencies coverage publish clean lint
