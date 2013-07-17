@@ -68,5 +68,24 @@ describe('Twitter', function () {
 
     });
 
+    describe('#latestHashtagTweets', function () {
+
+        it('should get the latest tweets by hashtag', function (done) {
+            twitter.latestTweets('yolo', function (err, tweets) {
+                assert.ifError(err);
+                assert(Array.isArray(tweets) && tweets.length);
+                tweets.forEach(function (tweet) {
+                    assert(tweet.id);
+                    assert(tweet.text);
+                    assert(tweet.user);
+                    assert(tweet.date.getTime() > 0);
+                    assert(tweet.entities);
+                });
+                done();
+            });
+        });
+
+    });
+
 });
 
