@@ -49,5 +49,24 @@ describe('Twitter', function () {
 
     });
 
+    describe('#latestTweets', function () {
+
+        it('should get the latest tweets from a user', function (done) {
+            twitter.latestTweets('chris6f', function (err, tweets) {
+                assert.ifError(err);
+                assert(Array.isArray(tweets) && tweets.length);
+                tweets.forEach(function (tweet) {
+                    assert(tweet.id);
+                    assert(tweet.text);
+                    assert(tweet.user);
+                    assert(tweet.date.getTime() > 0);
+                    assert(tweet.entities);
+                });
+                done();
+            });
+        });
+
+    });
+
 });
 
