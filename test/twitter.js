@@ -71,7 +71,7 @@ describe('Twitter', function () {
     describe('#latestHashtagTweets', function () {
 
         it('should get the latest tweets by hashtag', function (done) {
-            twitter.latestTweets('yolo', function (err, tweets) {
+            twitter.latestHashtagTweets('yolo', function (err, tweets) {
                 assert.ifError(err);
                 assert(Array.isArray(tweets) && tweets.length);
                 tweets.forEach(function (tweet) {
