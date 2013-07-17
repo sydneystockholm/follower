@@ -39,6 +39,15 @@ describe('Facebook', function () {
             });
         });
 
+        it('should get the # of likes a facebook page (without a vanity url) has', function (done) {
+            facebook.pageLikes('facebook.com/pages/Bacon/113009932047080', function (err, likes) {
+                assert.ifError(err);
+                assert(typeof likes === 'number');
+                assert(likes > 0);
+                done();
+            });
+        });
+
         it('should accept a page ID rather than url', function (done) {
             facebook.pageLikes('baconaddicts', function (err, likes) {
                 assert.ifError(err);
