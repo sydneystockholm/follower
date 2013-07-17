@@ -25,5 +25,53 @@ describe('Pinterest', function () {
 
     });
 
+    describe('#latestMedia', function () {
+
+        it('should get the latest media from a user', function (done) {
+            pinterest.latestMedia('cohara87', function (err, media) {
+                assert.ifError(err);
+                assert(Array.isArray(media) && media.length);
+                media.forEach(function (item) {
+                    assert(item.id);
+                    assert(item.description);
+                    assert(item.board);
+                    assert(typeof item.link !== 'undefined');
+                    assert(item.thumbnail);
+                });
+                done();
+            });
+        });
+
+        it('should get the latest media from a user\'s board', function (done) {
+            pinterest.latestMedia('cohara87', 'snowboarding', function (err, media) {
+                assert.ifError(err);
+                assert(Array.isArray(media) && media.length);
+                media.forEach(function (item) {
+                    assert(item.id);
+                    assert(item.description);
+                    assert(item.board);
+                    assert(typeof item.link !== 'undefined');
+                    assert(item.thumbnail);
+                });
+                done();
+            });
+        });
+
+        it('should fail when an invalid username is given', function (done) {
+            pinterest.latestMedia('casdfa89sd7f9asdf', function (err) {
+                assert(err);
+                done();
+            });
+        });
+
+        it('should fail when an invalid board is given', function (done) {
+            pinterest.latestMedia('cohara87', 'adosifaksdfjas', function (err) {
+                assert(err);
+                done();
+            });
+        });
+
+    });
+
 });
 
