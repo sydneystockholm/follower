@@ -1,7 +1,10 @@
 var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
 
-var bloglovin = require(lib_dir + 'bloglovin')
+var Bloglovin = require(lib_dir + 'bloglovin').Bloglovin
+  , request = require(lib_dir + 'request')
   , assert = require('assert');
+
+var bloglovin = new Bloglovin(request);
 
 describe('Bloglovin', function () {
 
