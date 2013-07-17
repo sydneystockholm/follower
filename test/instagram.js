@@ -28,5 +28,33 @@ describe('Instagram', function () {
 
     });
 
+    describe('#latestMedia', function () {
+
+        it('should get the latest media from a user', function (done) {
+            instagram.latestMedia('chris6F', function (err, media) {
+                assert.ifError(err);
+                assert(Array.isArray(media) && media.length);
+                media.forEach(function (item) {
+                    assert(item.id);
+                    assert(item.type);
+                    assert(item.link);
+                    assert(typeof item.caption !== 'undefined');
+                    assert(item.image);
+                    assert(item.user);
+                    assert(item.date.getTime() > 0);
+                });
+                done();
+            });
+        });
+
+        it('should fail on an invalid username', function (done) {
+            instagram.latestMedia('asdlkfajsdf90*9808', function (err) {
+                assert(err);
+                done();
+            });
+        });
+
+    });
+
 });
 
