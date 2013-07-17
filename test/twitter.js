@@ -2,9 +2,10 @@ var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
 
 var Twitter = require(lib_dir + 'twitter').Twitter
   , request = require(lib_dir + 'request')
+  , config = require('./config')
   , assert = require('assert');
 
-var twitter = new Twitter(request);
+var twitter = new Twitter(request, config.twitter_key, config.twitter_secret);
 
 describe('Twitter', function () {
 
