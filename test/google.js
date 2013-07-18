@@ -1,10 +1,9 @@
 var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
 
 var Google = require(lib_dir + 'google').Google
-  , request = require(lib_dir + 'request')
   , assert = require('assert');
 
-var google = new Google(request);
+var google = new Google();
 
 describe('Google', function () {
 

@@ -1,11 +1,13 @@
 var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
 
 var Instagram = require(lib_dir + 'instagram').Instagram
-  , request = require(lib_dir + 'request')
   , config = require('./config')
   , assert = require('assert');
 
-var instagram = new Instagram(request, config.instagram_client_id, config.instagram_secret);
+var instagram = new Instagram({
+    client_id: config.instagram_client_id
+  , secret: config.instagram_secret
+});
 
 describe('Instagram', function () {
 

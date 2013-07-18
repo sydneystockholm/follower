@@ -1,10 +1,9 @@
 var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
 
 var Facebook = require(lib_dir + 'facebook').Facebook
-  , request = require(lib_dir + 'request')
   , assert = require('assert');
 
-var facebook = new Facebook(request);
+var facebook = new Facebook();
 
 describe('Facebook', function () {
 
