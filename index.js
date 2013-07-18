@@ -8,6 +8,7 @@ module.exports = {
   , Youtube: require('./lib/youtube').Youtube
   , Bloglovin: require('./lib/bloglovin').Bloglovin
   , URLShares: require('./lib/url_shares').URLShares
+  , URLShareQueue: require('./lib/url_share_queue').URLShareQueue
   , request: require('./lib/request')
 };
 
