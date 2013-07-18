@@ -12,6 +12,7 @@
   },
   "keywords": [ "social" ],
   "dependencies": {
+    "redis": "*",
     "debug": "*"
   },
   "devDependencies": {
