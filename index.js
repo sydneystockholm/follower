@@ -7,6 +7,7 @@ module.exports = {
   , Twitter: require('./lib/twitter').Twitter
   , Youtube: require('./lib/youtube').Youtube
   , Bloglovin: require('./lib/bloglovin').Bloglovin
+  , URLShares: require('./lib/url_shares').URLShares
   , request: require('./lib/request')
 };
 
