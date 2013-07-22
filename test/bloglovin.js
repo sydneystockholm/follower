@@ -19,7 +19,7 @@ describe('Bloglovin', function () {
         });
 
         it('should get the # of followers a blog has using a bloglovin url', function (done) {
-            bloglovin.followerCount('www.bloglovin.com/blog/3668940', function (err, followers) {
+            bloglovin.followerCount('bloglovin.com/blog/3668940', function (err, followers) {
                 assert.ifError(err);
                 assert(typeof followers === 'number');
                 assert(followers > 0);
