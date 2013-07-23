@@ -44,7 +44,7 @@ instagram.latestHashtagMedia('YOLO', function (err, media) {
 
 ## Documentation
 
-The [code](https://github.com/sydneystockholm/wordpress.js/tree/master/lib) contains usage and examples.
+The [code](https://github.com/sydneystockholm/follower/tree/master/lib) contains usage and examples.
 
 ## License (MIT)
 
