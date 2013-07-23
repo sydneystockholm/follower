@@ -6,7 +6,7 @@ This library is progressively obedient, i.e. it attempts to use APIs (some that 
 
 Get share counts for a URL
 
-```javacsript
+```javascript
 var follower = require('follower');
 
 var shares = new follower.URLShares();
