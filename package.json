@@ -16,7 +16,9 @@
     "debug": "*"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "jshint": "*",
+    "istanbul": "*"
   },
   "engines": {
     "node": ">= 0.10.0"

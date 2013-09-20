@@ -13,7 +13,7 @@ dependencies:
 
 deps: dependencies
 
-test:
+test: check-deps
 	@./node_modules/mocha/bin/mocha \
 		--reporter ${REPORTER} \
 		--slow 5000 \
@@ -21,25 +21,26 @@ test:
 
 check: test
 
-coverage: lib-cov
-	@JS_COV=1 ./node_modules/mocha/bin/mocha \
-		--timeout 10000 --reporter html-cov > coverage.html
-	@rm -rf *-cov
-	@open coverage.html
+coverage: check-deps
+	@./node_modules/.bin/istanbul cover \
+		./node_modules/.bin/_mocha -- -R spec
 
-lib-cov:
-	@which jscoverage &> /dev/null || \
-		(echo "jscoverage is required - see the README" && exit 1);
-	@rm -rf lib-cov
-	@jscoverage lib lib-cov
+coverage-html: coverage
+	@open coverage/lcov-report/index.html
 
 clean:
-	@rm -rf coverage.html lib-cov
+	@rm -rf coverage
 
 publish: clean
 	@npm -s publish
 
-lint:
-	@jshint lib test
+lint: check-deps
+	@./node_modules/.bin/jshint -c ./.jshintrc lib test
+
+check-deps:
+	@if test ! -d node_modules; then \
+		echo "Installing npm dependencies.."; \
+		npm install -d; \
+	fi
 
 .PHONY: test dependencies coverage publish clean lint
