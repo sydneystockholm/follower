@@ -1,6 +1,4 @@
-var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
-
-var Twitter = require(lib_dir + 'twitter').Twitter
+var Twitter = require('../lib/twitter').Twitter
   , config = require('./config')
   , assert = require('assert');
 

@@ -1,6 +1,4 @@
-var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
-
-var Youtube = require(lib_dir + 'youtube').Youtube
+var Youtube = require('../lib/youtube').Youtube
   , assert = require('assert');
 
 var youtube = new Youtube();

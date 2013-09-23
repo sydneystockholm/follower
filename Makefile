@@ -1,4 +1,4 @@
-REPORTER?=progress
+REPORTER?=dot
 ifdef V
 	REPORTER=spec
 endif

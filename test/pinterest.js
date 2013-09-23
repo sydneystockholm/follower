@@ -1,6 +1,4 @@
-var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
-
-var Pinterest = require(lib_dir + 'pinterest').Pinterest
+var Pinterest = require('../lib/pinterest').Pinterest
   , assert = require('assert');
 
 var pinterest = new Pinterest();

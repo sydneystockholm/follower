@@ -1,6 +1,4 @@
-var lib_dir = process.env.JS_COV ? '../lib-cov/': '../lib/';
-
-var URLShares = require(lib_dir + 'url_shares').URLShares
+var URLShares = require('../lib/url_shares').URLShares
   , assert = require('assert');
 
 var urlshares = new URLShares();
