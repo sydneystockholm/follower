@@ -32,7 +32,7 @@ describe('Instagram', function () {
     describe('#latestMedia', function () {
 
         it('should get the latest media from a user', function (done) {
-            instagram.latestMedia('chris6F', function (err, media) {
+            instagram.latestMedia('eatingfoodbrb', function (err, media) {
                 assert.ifError(err);
                 assert(Array.isArray(media) && media.length);
                 media.forEach(function (item) {
