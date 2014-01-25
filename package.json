@@ -1,6 +1,6 @@
 {
   "name": "follower",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Fetch data from social networks",
   "main": "index.js",
   "scripts": {
