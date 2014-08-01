@@ -7,7 +7,7 @@ describe('Google', function () {
 
     describe('#urlPlusOnes', function () {
 
-        it('should get the # of pins a url has', function (done) {
+        it('should get the # of pluses a url has', function (done) {
             google.urlPlusOnes('http://google.com', function (err, plus_ones) {
                 assert.ifError(err);
                 assert(typeof plus_ones === 'number');
@@ -26,4 +26,3 @@ describe('Google', function () {
     });
 
 });
-
