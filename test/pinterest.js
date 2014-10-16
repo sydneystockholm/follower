@@ -28,7 +28,7 @@ describe('Pinterest', function () {
     describe('#latestMedia', function () {
 
         it('should get the latest media from a user', function (done) {
-            pinterest.latestMedia('cohara87', function (err, media) {
+            pinterest.latestMedia('souvlakiman', function (err, media) {
                 assert.ifError(err);
                 assert(Array.isArray(media) && media.length);
                 media.forEach(function (item) {
@@ -44,7 +44,7 @@ describe('Pinterest', function () {
         });
 
         it('should get the latest media from a user\'s board', function (done) {
-            pinterest.latestMedia('cohara87', 'snowboarding', function (err, media) {
+            pinterest.latestMedia('souvlakiman', 'recipes', function (err, media) {
                 assert.ifError(err);
                 assert(Array.isArray(media) && media.length);
                 media.forEach(function (item) {
@@ -67,7 +67,7 @@ describe('Pinterest', function () {
         });
 
         it('should fail when an invalid board is given', function (done) {
-            pinterest.latestMedia('cohara87', 'adosifaksdfjas', function (err) {
+            pinterest.latestMedia('souvlakiman', 'adosifaksdfjas', function (err) {
                 assert(err);
                 done();
             });
@@ -76,4 +76,3 @@ describe('Pinterest', function () {
     });
 
 });
-
