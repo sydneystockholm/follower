@@ -13,7 +13,8 @@
   "keywords": [ "social" ],
   "dependencies": {
     "redis": "*",
-    "debug": "*"
+    "debug": "*",
+    "follow-redirects": "*"
   },
   "devDependencies": {
     "mocha": "*",
