@@ -12,7 +12,7 @@ describe('Twitter', function () {
     describe('#followerCount', function () {
 
         it('should get the # of followers a user has', function (done) {
-            twitter.followerCount('chris6F', function (err, followers) {
+            twitter.followerCount('eatingfoodbrb', function (err, followers) {
                 assert.ifError(err);
                 assert(typeof followers === 'number');
                 assert(followers > 0);
@@ -52,7 +52,7 @@ describe('Twitter', function () {
     describe('#latestTweets', function () {
 
         it('should get the latest tweets from a user', function (done) {
-            twitter.latestTweets('chris6f', function (err, tweets) {
+            twitter.latestTweets('eatingfoodbrb', function (err, tweets) {
                 assert.ifError(err);
                 assert(Array.isArray(tweets) && tweets.length);
                 tweets.forEach(function (tweet) {
@@ -88,4 +88,3 @@ describe('Twitter', function () {
     });
 
 });
-
