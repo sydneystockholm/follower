@@ -1,6 +1,13 @@
 **follower** fetches data from social networks.
 
-This library is progressively obedient, i.e. it attempts to use APIs (some that are known and others that aren't) that require the least amount of authorisation before finally resorting to OAuth.
+[![Build Status](https://travis-ci.org/sydneystockholm/follower.svg)](https://travis-ci.org/sydneystockholm/follower)
+
+
+This library is progressively obedient, i.e. it attempts to use APIs
+(some that are known and others that aren't) that require the least amount of
+authorisation before finally resorting to OAuth.
+
+
 
 ## Basic example
 
@@ -44,11 +51,12 @@ instagram.latestHashtagMedia('YOLO', function (err, media) {
 
 ## Documentation
 
-The [code](https://github.com/sydneystockholm/follower/tree/master/lib) contains usage and examples.
+The [code](https://github.com/sydneystockholm/follower/tree/master/lib)
+contains usage and examples.
 
 ## License (MIT)
 
-Copyright (c) 2014 Sydney Stockholm <opensource@sydneystockholm.com>
+Copyright (c) 2015 Sydney Stockholm <opensource@sydneystockholm.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
