@@ -8,7 +8,7 @@ describe('Facebook', function () {
     describe('#urlLikes', function () {
 
         it('should get the # of likes a url has', function (done) {
-            facebook.urlLikes('http://facebook.com', function (err, likes) {
+            facebook.urlLikes('http://stoneyroads.com/2014/12/watch-a-steve-aoki-impersonator-troll-stereosonic-perth', function (err, likes) {
                 assert.ifError(err);
                 assert(typeof likes === 'number');
                 assert(likes > 0);
@@ -23,6 +23,24 @@ describe('Facebook', function () {
             });
         });
 
+    });
+
+    describe('#urlComments', function () {
+        it('should get the # of comments a url has', function(done) {
+            facebook.urlComments('http://facebook.com', function (err, comments) {
+                assert.ifError(err);
+                assert(typeof comments === 'number');
+                assert(comments > 0);
+                done();
+            });
+        });
+
+        it('should fail on an invalid url', function (done) {
+            facebook.urlComments('!@(*#&!(@*#&!', function (err) {
+                assert(err);
+                done();
+            });
+        });
     });
 
     describe('#pageLikes', function () {
@@ -67,4 +85,3 @@ describe('Facebook', function () {
     });
 
 });
-
