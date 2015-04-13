@@ -1,34 +1,25 @@
 var URLShares = require('../lib/url_shares').URLShares
-  , assert = require('assert');
+  , test = require('tape').test;
 
 var urlshares = new URLShares();
 
-describe('URLShares', function () {
-
-    describe('#count', function () {
-
-        it('should get the # of shares a URL has, by network', function (done) {
-            urlshares.count('http://facebook.com', function (err, shares) {
-                assert.ifError(err);
-                assert.equal(typeof shares, 'object');
-                [ 'facebook_likes', 'twitter_tweets',
-                  'pinterest_pins', 'google_plus_ones'
-                ].forEach(function (count) {
-                    assert.equal(typeof shares[count], 'number');
-                    assert(shares[count] > 0);
-                });
-                done();
-            });
+test('should get the # of shares a URL has, by network', function (t) {
+    urlshares.count('http://facebook.com', function (err, shares) {
+        t.error(err);
+        t.equal(typeof shares, 'object');
+        var properties = ['facebook_likes', 'twitter_tweets',
+                          'pinterest_pins', 'google_plus_ones'];
+        t.looseEqual(properties, Object.keys(shares));
+        properties.forEach(function(p) {
+            t.equal(typeof shares[p], 'number');
         });
-
-        it('should fail on an invalid url', function (done) {
-            urlshares.count('!@(*#&!(@*#&!', function (err) {
-                assert(err);
-                done();
-            });
-        });
-
+        t.end();
     });
-
 });
 
+test('should fail on an invalid url', function (t) {
+    urlshares.count('!@(*#&!(@*#&!', function (err) {
+        t.assert(err);
+        t.end();
+    });
+});

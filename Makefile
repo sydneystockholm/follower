@@ -1,23 +1,10 @@
-REPORTER?=dot
-ifdef V
-	REPORTER=spec
-endif
-
-ifdef TEST
-	T=--grep '${TEST}'
-	REPORTER=list
-endif
-
 dependencies:
 	@npm install -s -d
 
 deps: dependencies
 
 test: check-deps
-	@./node_modules/mocha/bin/mocha \
-		--reporter ${REPORTER} \
-		--slow 5000 \
-		--timeout 10000 $T
+	@./node_modules/tape/bin/tape test/*.js
 
 check: test
 

@@ -1,82 +1,60 @@
 var Instagram = require('../lib/instagram').Instagram
   , config = require('./config')
-  , assert = require('assert');
+  , test = require('tape').test;
+
+var has_secret = config.instagram_secret.length > 0 ? true : false;
+var username = 'instagram';
+var hashtag = 'yolo';
 
 var instagram = new Instagram({
     client_id: config.instagram_client_id
   , secret: config.instagram_secret
 });
 
-describe('Instagram', function () {
-
-    describe('#followerCount', function () {
-
-        it('should get the # of followers a user has', function (done) {
-            instagram.followerCount('chris6F', function (err, followers) {
-                assert.ifError(err);
-                assert(typeof followers === 'number');
-                assert(followers > 0);
-                done();
-            });
-        });
-
-        it('should fail on an invalid username', function (done) {
-            instagram.followerCount('', function (err) {
-                assert(err);
-                done();
-            });
-        });
-
+test('get follower count for a user', function(t) {
+    instagram.followerCount(username, function (err, followers) {
+        t.error(err);
+        t.equal(typeof followers, 'number');
+        t.assert(followers > 0);
+        t.end();
     });
-
-    describe('#latestMedia', function () {
-
-        it('should get the latest media from a user', function (done) {
-            instagram.latestMedia('eatingfoodbrb', function (err, media) {
-                assert.ifError(err);
-                assert(Array.isArray(media) && media.length);
-                media.forEach(function (item) {
-                    assert(item.id);
-                    assert(item.type);
-                    assert(item.link);
-                    assert(typeof item.caption !== 'undefined');
-                    assert(item.image);
-                    assert(item.user);
-                    assert(item.date.getTime() > 0);
-                });
-                done();
-            });
-        });
-
-        it('should fail on an invalid username', function (done) {
-            instagram.latestMedia('', function (err) {
-                assert(err);
-                done();
-            });
-        });
-
-    });
-
-    describe('#latestHashtagMedia', function () {
-
-        it('should get the latest media for a hashtag', function (done) {
-            instagram.latestHashtagMedia('yolo', function (err, media) {
-                assert.ifError(err);
-                assert(Array.isArray(media) && media.length);
-                media.forEach(function (item) {
-                    assert(item.id);
-                    assert(item.type);
-                    assert(item.link);
-                    assert(typeof item.caption !== 'undefined');
-                    assert(item.image);
-                    assert(item.user);
-                    assert(item.date.getTime() > 0);
-                });
-                done();
-            });
-        });
-
-    });
-
 });
 
+test('should fail with an invalid username', function(t) {
+    instagram.followerCount('', function (err) {
+        t.assert(err);
+    });
+    instagram.latestMedia('', function (err) {
+        t.assert(err);
+    });
+    t.end();
+});
+
+test('get latest media from a user', function(t) {
+    instagram.latestMedia(username, function (err, media) {
+        t.error(err);
+        t.assert(Array.isArray(media) && media.length);
+        var item = media[0];
+        t.assert(item.id && item.type && item.link && item.image && item.user &&
+                 item.date.getTime() > 0 && typeof item.caption !== 'undefined',
+                 'check that a media item has proper attributes');
+        t.end();
+    });
+});
+
+
+test('get latest media for a hashtag', function(t) {
+    if (has_secret === true) {
+        instagram.latestHashtagMedia(hashtag, function (err, media) {
+            t.error(err);
+            var item = media[0];
+            t.assert(item.id && item.type && item.link && item.image &&
+                     item.user && item.date.getTime() > 0 &&
+                     typeof item.caption !== 'undefined',
+                     'check that a media item has proper attributes');
+        });
+    } else {
+        t.skip('no instagram secret');
+    }
+    t.end();
+});

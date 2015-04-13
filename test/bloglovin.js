@@ -1,37 +1,29 @@
 var Bloglovin = require('../lib/bloglovin').Bloglovin
-  , assert = require('assert');
+  , test = require('tape').test;
 
 var bloglovin = new Bloglovin();
 
-describe('Bloglovin', function () {
-
-    describe('#followerCount', function () {
-
-        it('should get the # of followers a blog has', function (done) {
-            bloglovin.followerCount(10297416, function (err, followers) {
-                assert.ifError(err);
-                assert(typeof followers === 'number');
-                assert(followers > 0);
-                done();
-            });
-        });
-
-        it('should get the # of followers a blog has using a bloglovin url', function (done) {
-            bloglovin.followerCount('www.bloglovin.com/blog/10297416', function (err, followers) {
-                assert.ifError(err);
-                assert(typeof followers === 'number');
-                assert(followers > 0);
-                done();
-            });
-        });
-
-        it('should fail on invalid blog url', function (done) {
-            bloglovin.followerCount('adsfasdfasdof', function (err) {
-                assert(err);
-                done();
-            });
-        });
-
+test('fetch a follower count using id', function (t) {
+    bloglovin.followerCount(10297416, function (err, followers) {
+        t.error(err);
+        t.equal(typeof followers, 'number');
+        t.assert(followers > 0);
+        t.end();
     });
+});
 
+test('fetch a follower count using full url', function (t) {
+    bloglovin.followerCount('www.bloglovin.com/blog/10297416', function (err, followers) {
+        t.error(err);
+        t.equal(typeof followers, 'number');
+        t.assert(followers > 0);
+        t.end();
+    });
+});
+
+test('fail on invalid blog url', function (t) {
+    bloglovin.followerCount('adsfasdfasdof', function (err) {
+        t.assert(err);
+        t.end();
+    });
 });

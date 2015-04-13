@@ -1,90 +1,78 @@
 var Twitter = require('../lib/twitter').Twitter
   , config = require('./config')
-  , assert = require('assert');
+  , test = require('tape').test;
 
 var twitter = new Twitter({
     key: config.twitter_key
   , secret: config.twitter_secret
 });
 
-describe('Twitter', function () {
+var has_secret = config.twitter_secret.length > 0 ? true : false;
+var username = 'eatingfoodbrb';
+var hashtag = 'yolo';
 
-    describe('#followerCount', function () {
-
-        it('should get the # of followers a user has', function (done) {
-            twitter.followerCount('eatingfoodbrb', function (err, followers) {
-                assert.ifError(err);
-                assert(typeof followers === 'number');
-                assert(followers > 0);
-                done();
-            });
+test('should get the # of followers a user has', function (t) {
+    if (has_secret === true) {
+        twitter.followerCount('eatingfoodbrb', function (err, followers) {
+            t.error(err);
+            t.equal(typeof followers, 'number');
+            t.assert(followers > 0);
         });
+    } else {
+        t.skip('no twitter secret');
+    }
+    t.end();
+});
 
-        it('should fail on an invalid username', function (done) {
-            twitter.followerCount('', function (err) {
-                assert(err);
-                done();
-            });
-        });
-
+test('should fail on an invalid username', function (t) {
+    twitter.followerCount('', function (err) {
+        t.assert(err);
+        t.end();
     });
+});
 
-    describe('#urlTweets', function () {
-
-        it('should get the # of tweets a url has', function (done) {
-            twitter.urlTweets('http://twitter.com', function (err, tweets) {
-                assert.ifError(err);
-                assert(typeof tweets === 'number');
-                assert(tweets > 0);
-                done();
-            });
-        });
-
-        it('should fail on an invalid url', function (done) {
-            twitter.urlTweets('', function (err) {
-                assert(err);
-                done();
-            });
-        });
-
+test('should get the # of tweets a url has', function (t) {
+    twitter.urlTweets('http://twitter.com', function (err, tweets) {
+        t.error(err);
+        t.equal(typeof tweets, 'number');
+        t.assert(tweets > 0);
+        t.end();
     });
+});
 
-    describe('#latestTweets', function () {
-
-        it('should get the latest tweets from a user', function (done) {
-            twitter.latestTweets('eatingfoodbrb', function (err, tweets) {
-                assert.ifError(err);
-                assert(Array.isArray(tweets) && tweets.length);
-                tweets.forEach(function (tweet) {
-                    assert(tweet.id);
-                    assert(tweet.text);
-                    assert(tweet.user);
-                    assert(tweet.date.getTime() > 0);
-                    assert(tweet.entities);
-                });
-                done();
-            });
-        });
-
+test('should fail on an invalid url', function (t) {
+    twitter.urlTweets('', function (err) {
+        t.assert(err);
+        t.end();
     });
+});
 
-    describe('#latestHashtagTweets', function () {
-
-        it('should get the latest tweets by hashtag', function (done) {
-            twitter.latestHashtagTweets('yolo', function (err, tweets) {
-                assert.ifError(err);
-                assert(Array.isArray(tweets) && tweets.length);
-                tweets.forEach(function (tweet) {
-                    assert(tweet.id);
-                    assert(tweet.text);
-                    assert(tweet.user);
-                    assert(tweet.date.getTime() > 0);
-                    assert(tweet.entities);
-                });
-                done();
-            });
+test('should get the latest tweets from a user', function (t) {
+    if (has_secret === true) {
+        twitter.latestTweets(username, function (err, tweets) {
+            t.error(err);
+            var item = tweets[0];
+            t.assert(item.id && item.text && item.user &&
+                     item.entities && item.date.getTime() > 0,
+                     'check that a media item has proper attributes');
         });
+    } else {
+        t.skip('no twitter secret');
+    }
+    t.end();
+});
 
-    });
-
+test('should get the latest tweets by hashtag', function (t) {
+    if (has_secret === true) {
+        twitter.latestHashtagTweets(hashtag, function (err, tweets) {
+            t.error(err);
+            var item = tweets[0];
+            t.assert(item.id && item.text && item.user &&
+                     item.entities && item.date.getTime() > 0,
+                     'check that a media item has proper attributes');
+        });
+    } else {
+        t.skip('no twitter secret');
+    }
+    t.end();
 });
