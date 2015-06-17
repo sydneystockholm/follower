@@ -5,10 +5,8 @@ module.exports = {
   , Instagram: require('./lib/instagram').Instagram
   , Pinterest: require('./lib/pinterest').Pinterest
   , Twitter: require('./lib/twitter').Twitter
-  , Youtube: require('./lib/youtube').Youtube
   , Bloglovin: require('./lib/bloglovin').Bloglovin
   , URLShares: require('./lib/url_shares').URLShares
   , URLShareQueue: require('./lib/url_share_queue').URLShareQueue
   , request: require('./lib/request')
 };
-
