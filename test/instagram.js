@@ -35,13 +35,12 @@ test('get latest media from a user', function(t) {
         t.error(err);
         t.assert(Array.isArray(media) && media.length);
         var item = media[0];
-        t.assert(item.id && item.type && item.link && item.image && item.user &&
-                 item.date.getTime() > 0 && typeof item.caption !== 'undefined',
-                 'check that a media item has proper attributes');
+        t.assert(item.id && item.is_video !== 'undefined' && item.comments &&
+                 item.likes && item.code && item.image && item.owner &&
+                 item.date, 'check that a media item has proper attributes');
         t.end();
     });
 });
-
 
 test('get latest media for a hashtag', function(t) {
     if (has_secret === true) {
